@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+<header class="page-head">
+  <h1>نظرة عامة</h1>
+  <p class="muted">ملخص سريع لمحتوى قاعدة البيانات</p>
+</header>
+
+<section class="grid-cards">
+  <a class="stat-card" href="/videos">
+    <span class="stat-num"><%= counts.videos %></span>
+    <span class="stat-label">فيديو قرآن</span>
+  </a>
+  <a class="stat-card" href="/content/duas">
+    <span class="stat-num"><%= counts.duas %></span>
+    <span class="stat-label">دعاء</span>
+  </a>
+  <a class="stat-card" href="/content/adhkar">
+    <span class="stat-num"><%= counts.adhkar %></span>
+    <span class="stat-label">ذكر</span>
+  </a>
+  <a class="stat-card" href="/content/hadiths">
+    <span class="stat-num"><%= counts.hadiths %></span>
+    <span class="stat-label">حديث</span>
+  </a>
+  <a class="stat-card" href="/content/quotes">
+    <span class="stat-num"><%= counts.quotes %></span>
+    <span class="stat-label">مقتطف</span>
+  </a>
+  <a class="stat-card stat-card--alert" href="/tickets">
+    <span class="stat-num"><%= counts.tickets %></span>
+    <span class="stat-label">بلاغ مفتوح</span>
+  </a>
+</section>
+
+<section class="note-box">
+  <strong>تذكير:</strong> قبل نشر البوت للعامة، يُستحسن مراجعة نصوص الأحاديث والمقتطفات من قِبل طالب علم
+  أو جهة شرعية موثوقة، خصوصاً الآثار المنقولة عن السلف.
+</section>
+
+<%- include('partials/footer') %>

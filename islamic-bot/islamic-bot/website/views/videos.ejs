@@ -1,0 +1,56 @@
+<%- include('partials/header') %>
+
+<header class="page-head">
+  <h1>فيديوهات القرآن</h1>
+  <p class="muted">أضف روابط تلاوات يوتيوب، وسيقوم أمر <code>/quranvideo</code> بإرسالها للأعضاء</p>
+</header>
+
+<% if (error) { %>
+  <div class="alert"><%= error %></div>
+<% } %>
+
+<form method="POST" action="/videos/add" class="form-card">
+  <div class="form-row">
+    <label>العنوان
+      <input type="text" name="title" placeholder="مثال: سورة الرحمن - الشيخ عبدالباسط" required />
+    </label>
+    <label>السورة (اختياري)
+      <input type="text" name="surah" placeholder="مثال: الرحمن" />
+    </label>
+  </div>
+  <div class="form-row">
+    <label>القارئ (اختياري)
+      <input type="text" name="reciter" placeholder="مثال: عبدالباسط عبدالصمد" />
+    </label>
+    <label>رابط اليوتيوب
+      <input type="url" name="youtube_url" placeholder="https://youtube.com/watch?v=..." required />
+    </label>
+  </div>
+  <button type="submit">➕ إضافة الفيديو</button>
+</form>
+
+<table class="data-table">
+  <thead>
+    <tr><th>العنوان</th><th>السورة</th><th>القارئ</th><th>الرابط</th><th></th></tr>
+  </thead>
+  <tbody>
+    <% videos.forEach(v => { %>
+      <tr>
+        <td><%= v.title %></td>
+        <td><%= v.surah || '—' %></td>
+        <td><%= v.reciter || '—' %></td>
+        <td><a href="<%= v.youtube_url %>" target="_blank" rel="noopener">فتح ↗</a></td>
+        <td>
+          <form method="POST" action="/videos/<%= v.id %>/delete" onsubmit="return confirm('حذف هذا الفيديو؟');">
+            <button type="submit" class="btn-danger">حذف</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+    <% if (!videos.length) { %>
+      <tr><td colspan="5" class="empty">لا توجد فيديوهات بعد. أضف أول فيديو من النموذج أعلاه.</td></tr>
+    <% } %>
+  </tbody>
+</table>
+
+<%- include('partials/footer') %>

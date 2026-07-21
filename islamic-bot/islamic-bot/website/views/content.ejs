@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+<header class="page-head">
+  <h1><%= config.label %></h1>
+  <p class="muted">أضف عنصراً جديداً أو احذف أي عنصر غير صحيح</p>
+</header>
+
+<% if (error) { %>
+  <div class="alert"><%= error %></div>
+<% } %>
+
+<form method="POST" action="/content/<%= table %>/add" class="form-card">
+  <div class="form-row">
+    <% config.fields.forEach(f => { %>
+      <label>
+        <%= f.label %>
+        <% if (f.textarea) { %>
+          <textarea name="<%= f.key %>" rows="3" required></textarea>
+        <% } else { %>
+          <input type="text" name="<%= f.key %>" <%= f.key !== 'repeat_count' ? 'required' : '' %> />
+        <% } %>
+      </label>
+    <% }) %>
+  </div>
+  <button type="submit">➕ إضافة</button>
+</form>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <% config.fields.forEach(f => { %><th><%= f.label %></th><% }) %>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% rows.forEach(r => { %>
+      <tr>
+        <% config.fields.forEach(f => { %>
+          <td class="<%= f.textarea ? 'cell-arabic' : '' %>"><%= r[f.key] ?? '—' %></td>
+        <% }) %>
+        <td>
+          <form method="POST" action="/content/<%= table %>/<%= r.id %>/delete" onsubmit="return confirm('حذف هذا العنصر؟');">
+            <button type="submit" class="btn-danger">حذف</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+    <% if (!rows.length) { %>
+      <tr><td colspan="<%= config.fields.length + 1 %>" class="empty">لا توجد عناصر بعد.</td></tr>
+    <% } %>
+  </tbody>
+</table>
+
+<%- include('partials/footer') %>

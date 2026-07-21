@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول - لوحة التحكم</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body class="login-body">
+  <div class="login-card">
+    <div class="login-glyph">﷽</div>
+    <h1>لوحة تحكم البوت</h1>
+    <p class="muted">أدخل كلمة المرور للمتابعة</p>
+    <form method="POST" action="/login">
+      <input type="password" name="password" placeholder="كلمة المرور" required autofocus />
+      <button type="submit">دخول</button>
+    </form>
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+  </div>
+</body>
+</html>
