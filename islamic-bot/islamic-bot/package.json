@@ -5,6 +5,7 @@
   "main": "bot/index.js",
   "type": "commonjs",
   "scripts": {
+    "start": "node start.js",
     "deploy-commands": "node bot/deploy-commands.js",
     "start:bot": "node bot/index.js",
     "start:web": "node website/server.js",
