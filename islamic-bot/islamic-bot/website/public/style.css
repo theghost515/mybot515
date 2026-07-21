@@ -1,0 +1,262 @@
+/* ===== الرموز التصميمية ===== */
+:root {
+  --teal-950: #0a2726;
+  --teal-800: #103d3b;
+  --teal-600: #17615c;
+  --teal-100: #e3efec;
+  --gold-500: #c69a4b;
+  --gold-300: #e7cd8f;
+  --cream: #f8f5ee;
+  --ink: #1c2321;
+  --ink-soft: #5b665f;
+  --danger: #b3402f;
+  --danger-soft: #f4e2de;
+  --radius: 10px;
+  --shadow: 0 6px 20px rgba(10, 39, 38, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+h1, h2, h3 { font-family: 'Amiri', serif; margin: 0 0 6px; }
+
+a { color: inherit; text-decoration: none; }
+
+code {
+  background: var(--teal-100);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.muted { color: var(--ink-soft); }
+.small { font-size: 12.5px; }
+
+/* ===== الهيكل العام ===== */
+.shell { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--teal-950), var(--teal-800));
+  color: var(--cream);
+  padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-glyph {
+  font-size: 26px;
+  color: var(--gold-300);
+  border: 1px solid rgba(231, 205, 143, 0.35);
+  border-radius: 50%;
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.35; }
+.brand-text strong { font-family: 'Amiri', serif; font-size: 17px; }
+.brand-text span { font-size: 12px; color: var(--gold-300); }
+
+.sidebar nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.sidebar nav a {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  color: rgba(248, 245, 238, 0.85);
+  font-size: 14.5px;
+  transition: background 0.15s ease;
+}
+.sidebar nav a:hover { background: rgba(231, 205, 143, 0.12); color: var(--gold-300); }
+
+.logout-form button {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(231, 205, 143, 0.4);
+  color: var(--gold-300);
+  padding: 9px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+}
+.logout-form button:hover { background: rgba(231, 205, 143, 0.1); }
+
+.content { flex: 1; padding: 36px 44px; max-width: 1080px; }
+
+.page-head { margin-bottom: 26px; border-bottom: 1px solid rgba(10, 39, 38, 0.1); padding-bottom: 16px; }
+
+/* ===== بطاقات الإحصائيات ===== */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid rgba(10, 39, 38, 0.08);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 3px solid var(--gold-500);
+}
+.stat-card--alert { border-top-color: var(--danger); }
+.stat-num { font-family: 'Amiri', serif; font-size: 32px; color: var(--teal-800); }
+.stat-label { color: var(--ink-soft); font-size: 13.5px; }
+
+.note-box {
+  background: var(--teal-100);
+  border-right: 4px solid var(--teal-600);
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--teal-800);
+}
+
+/* ===== النماذج ===== */
+.form-card {
+  background: #fff;
+  border: 1px solid rgba(10, 39, 38, 0.08);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 26px;
+  box-shadow: var(--shadow);
+}
+.form-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 4px; }
+.form-row label {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+input, textarea {
+  font-family: 'Tajawal', sans-serif;
+  padding: 10px 12px;
+  border: 1px solid rgba(10, 39, 38, 0.15);
+  border-radius: 6px;
+  font-size: 14.5px;
+  color: var(--ink);
+  background: var(--cream);
+}
+input:focus, textarea:focus { outline: 2px solid var(--gold-500); outline-offset: 1px; }
+
+button {
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+}
+.form-card > button[type="submit"] {
+  margin-top: 14px;
+  background: var(--teal-800);
+  color: var(--gold-300);
+  padding: 11px 22px;
+  border-radius: var(--radius);
+  font-size: 14.5px;
+}
+.form-card > button[type="submit"]:hover { background: var(--teal-600); }
+
+.btn-danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.btn-danger:hover { background: var(--danger); color: #fff; }
+
+.btn-secondary {
+  background: var(--teal-100);
+  color: var(--teal-800);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.btn-secondary:hover { background: var(--teal-600); color: #fff; }
+
+/* ===== الجداول ===== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.data-table th, .data-table td {
+  padding: 12px 14px;
+  text-align: right;
+  border-bottom: 1px solid rgba(10, 39, 38, 0.08);
+  font-size: 14px;
+  vertical-align: top;
+}
+.data-table th {
+  background: var(--teal-100);
+  color: var(--teal-800);
+  font-weight: 700;
+  font-size: 13px;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.cell-arabic { max-width: 420px; line-height: 1.9; }
+.empty { text-align: center; color: var(--ink-soft); padding: 26px; }
+
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.badge-open { background: var(--danger-soft); color: var(--danger); }
+.badge-closed { background: var(--teal-100); color: var(--teal-800); }
+
+.alert {
+  background: var(--danger-soft);
+  color: var(--danger);
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+/* ===== صفحة تسجيل الدخول ===== */
+.login-body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 0%, var(--teal-600), var(--teal-950) 70%);
+  font-family: 'Tajawal', sans-serif;
+}
+.login-card {
+  background: var(--cream);
+  border-radius: 14px;
+  padding: 40px 36px;
+  width: 340px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+.login-glyph { font-size: 34px; color: var(--gold-500); margin-bottom: 10px; }
+.login-card h1 { font-size: 20px; color: var(--teal-800); }
+.login-card form { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.login-card input {
+  text-align: center;
+}
+.login-card button[type="submit"] {
+  background: var(--teal-800);
+  color: var(--gold-300);
+  padding: 11px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.login-card button[type="submit"]:hover { background: var(--teal-600); }
+.login-card .error { color: var(--danger); font-size: 13.5px; margin-top: 4px; }
