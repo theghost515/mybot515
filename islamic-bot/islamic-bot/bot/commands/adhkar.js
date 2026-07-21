@@ -6,13 +6,10 @@ const { adhkarEmbed, errorEmbed } = require('../embeds');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('adhkar')
-    .setNameLocalizations({ ar: 'اذكار' })
     .setDescription('يرسل مجموعة أذكار (صباح / مساء / نوم ...)')
-    .setDescriptionLocalizations({ ar: 'يرسل مجموعة أذكار بطريقة جميلة ومرتبة' })
     .addStringOption((opt) =>
       opt
         .setName('category')
-        .setNameLocalizations({ ar: 'الوقت' })
         .setDescription('اختر وقت الأذكار')
         .setRequired(true)
         .addChoices(
@@ -31,9 +28,15 @@ module.exports = {
     const rows = db.prepare('SELECT * FROM adhkar WHERE category = ?').all(category);
 
     if (!rows.length) {
-      await interaction.reply({ embeds: [errorEmbed('لا توجد أذكار مسجلة لهذا التصنيف بعد.')], ephemeral: true });
+      await interaction.reply({
+        embeds: [errorEmbed('لا توجد أذكار مسجلة لهذا التصنيف بعد.')],
+        ephemeral: true,
+      });
       return;
     }
-    await interaction.reply({ embeds: [adhkarEmbed(rows, category)] });
+
+    await interaction.reply({
+      embeds: [adhkarEmbed(rows, category)],
+    });
   },
 };
