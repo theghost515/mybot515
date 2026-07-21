@@ -6,9 +6,7 @@ const { buildReportButtonRow } = require('../reportHandler');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('help')
-    .setNameLocalizations({ ar: 'مساعدة' })
-    .setDescription('يعرض قائمة أوامر البوت وزر الإبلاغ عن مشكلة')
-    .setDescriptionLocalizations({ ar: 'يعرض قائمة أوامر البوت وزر الإبلاغ عن مشكلة' }),
+    .setDescription('يعرض قائمة أوامر البوت وزر الإبلاغ عن مشكلة'),
 
   async execute(interaction) {
     const embed = baseEmbed({ color: COLORS.gold, footerText: 'نسأل الله القبول' })
@@ -25,6 +23,9 @@ module.exports = {
         { name: '🛠️ الإبلاغ عن مشكلة', value: 'اضغط الزر أدناه لإرسال مشكلتك لفريق الدعم الفني مباشرة' },
       );
 
-    await interaction.reply({ embeds: [embed], components: [buildReportButtonRow()] });
+    await interaction.reply({
+      embeds: [embed],
+      components: [buildReportButtonRow()],
+    });
   },
 };
